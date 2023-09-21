@@ -4,7 +4,6 @@ from flask import Flask, request
 import json
 # Requests, to send requests to the API and get data back
 import requests
-from gunicorn
 
 # Open file with urls and API keys
 info = open('info.txt', 'r').readlines()
