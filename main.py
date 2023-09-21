@@ -4,6 +4,7 @@ from flask import Flask, request
 import json
 # Requests, to send requests to the API and get data back
 import requests
+from gevent.pywsgi import WSGIServer
 
 # Open file with urls and API keys
 info = open('info.txt', 'r').readlines()
@@ -40,5 +41,9 @@ def result():
     # Return the retrieved info as dict
     return json.loads(info)
 
-# Start the flask app
-app.run('0.0.0.0')
+# Start the flask app (for dev env)
+# app.run()
+
+# Start the flask app (for prod env)
+http_server = WSGIServer(("0.0.0.0", 5000), app)
+http_server.serve_forever()
