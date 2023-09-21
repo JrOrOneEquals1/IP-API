@@ -47,3 +47,5 @@ def result():
 # Start the flask app (for prod env)
 http_server = WSGIServer(("0.0.0.0", 5000), app)
 http_server.serve_forever()
+# Log that server was started
+print('Production environment deployed')
