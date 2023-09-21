@@ -4,4 +4,4 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def result():
-    print(request.form['foo']) # should display 'bar'
+    print(request.form['type'])
