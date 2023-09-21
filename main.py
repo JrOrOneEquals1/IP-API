@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 # Set endpoint to be railway URL (ip-api-production.up.railway.app)
 # Function gets called when a POST request is received at above address
-@app.route('/', methods=['POST'])
+@app.route('0.0.0.0:$PORT/', methods=['POST'])
 def result():
     # Parse request data into python dict
     data = json.loads(request.data)
