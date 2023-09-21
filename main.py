@@ -5,6 +5,14 @@ import json
 # Requests, to send requests to the API and get data back
 import requests
 
+# Open file with urls and API keys
+info = open('info.txt', 'r').readlines()
+# Assign lines in file to specific variables
+whoisURL = info[0]
+whoisKey = info[1]
+vtURL = info[2]
+vtKey = info[3]
+
 # Init the app
 app = Flask(__name__)
 
@@ -21,11 +29,11 @@ def result():
     # If type is ip or domain
     if contentType in ['ip', 'domain']:
         # Send request to WhoIs API to get info about ip or domain
-        info = requests.post(f'https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=at_sKqg6zX9HGSFXMrIXU4l8DwVTnE2C&domainName={content}&outputFormat=JSON').text
+        info = requests.post(f'{whoisURL}?apiKey={whoisKey}&domainName={content}&outputFormat=JSON').text
     # If type is a file hash
     elif contentType == 'hash':
         # Send request to VirusTotal API to get info about the hash
-        info = requests.get(f'https://www.virustotal.com/api/v3/files/{content}', headers={'x-apikey': 'a9442725b4f377c0d308c043adf6ced518728174368f0d32b16a53fba621af4b'}).text
+        info = requests.get(f'{vtURL}{content}', headers={'x-apikey': f'{vtKey}'}).text
     else:
         # If type isn't ip/domain/hash
         return f"Invalid type passed in: '{contentType}'"
