@@ -4,7 +4,7 @@ from flask import Flask, request
 import json
 # Requests, to send requests to the API and get data back
 import requests
-from gevent.pywsgi import WSGIServer
+from gunicorn
 
 # Open file with urls and API keys
 info = open('info.txt', 'r').readlines()
@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 # Set endpoint to be railway URL (ip-api-production.up.railway.app)
 # Function gets called when a POST request is received at above address
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST', 'GET'])
 def result():
     # Parse request data into python dict
     data = json.loads(request.data)
@@ -43,9 +43,3 @@ def result():
 
 # Start the flask app (for dev env)
 # app.run()
-
-# Start the flask app (for prod env)
-http_server = WSGIServer(("0.0.0.0", 5000), app)
-http_server.serve_forever()
-# Log that server was started
-print('Production environment deployed')
