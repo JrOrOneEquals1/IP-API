@@ -6,7 +6,7 @@ import json
 import requests
 
 # Open file with urls and API keys
-info = open('info.txt', 'r').readlines()
+info = open('info.txt', 'r').read().split('\n')
 # Assign lines in file to specific variables
 whoisURL = info[0]
 whoisKey = info[1]
@@ -46,4 +46,4 @@ def result():
     return json.loads(info)
 
 # Start the flask app (for dev env)
-# app.run()
+app.run()
