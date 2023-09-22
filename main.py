@@ -21,7 +21,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def result():
     if request.data == b'':
-        data = f'{{"type": "{request.form["type"]}","content": "{request.form["content"]}"}}'
+        data = request.json
     else:
         data = request.data
     # Log request data
