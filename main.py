@@ -20,7 +20,9 @@ app = Flask(__name__)
 # Function gets called when a POST request is received at above address
 @app.route('/', methods=['POST', 'GET'])
 def result():
-    # Log the request data
+    # Get the raw request data
+    request.get_data()
+    # Log request data
     print(request.data)
     # Parse request data into python dict
     data = json.loads(request.data)
@@ -48,4 +50,4 @@ def result():
     return json.loads(info)
 
 # Start the flask app (for dev env)
-# app.run()
+app.run()
