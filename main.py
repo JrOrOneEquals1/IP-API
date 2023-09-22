@@ -23,9 +23,9 @@ def result():
     # Get the raw request data
     request.get_data()
     # Log request data
-    print(request.data)
+    print(request.json)
     # Parse request data into python dict
-    data = json.loads(request.data)
+    data = json.loads(request.json)
     # Get type of value passed in (ip/domain/hash) case insensitive
     contentType = data['type'].lower()
     # Get value passed in, case sensitive
