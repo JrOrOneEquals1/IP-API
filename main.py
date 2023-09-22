@@ -42,8 +42,3 @@ def result():
 
 # Start the flask app (for dev env)
 # app.run()
-
-# Function called by Railway to start app
-# Uses gunicorn
-def start(env, startResponse):
-    return app
