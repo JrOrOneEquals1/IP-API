@@ -20,6 +20,8 @@ app = Flask(__name__)
 # Function gets called when a POST request is received at above address
 @app.route('/', methods=['POST', 'GET'])
 def result():
+    # Log the request data
+    print(request.data)
     # Parse request data into python dict
     data = json.loads(request.data)
     # Get type of value passed in (ip/domain/hash) case insensitive
