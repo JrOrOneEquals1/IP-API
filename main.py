@@ -20,8 +20,8 @@ app = Flask(__name__)
 # Function gets called when a POST request is received at above address
 @app.route('/', methods=['POST', 'GET'])
 def result():
-    # Get the raw request data
-    data = request.get_data()
+    if request.data == b'':
+        data = f'{{"type": "{request.form["type"]}","content": "{request.form["content"]}"}}'
     # Log request data
     print(data)
     # Parse request data into python dict
