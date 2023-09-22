@@ -50,4 +50,4 @@ def result():
     return json.loads(info)
 
 # Start the flask app (for dev env)
-app.run()
+# app.run()
