@@ -42,3 +42,6 @@ def result():
 
 # Start the flask app (for dev env)
 # app.run()
+
+def start(env, startResponse):
+    return app
