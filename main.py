@@ -26,6 +26,7 @@ def result():
     contentType = data['type'].lower()
     # Get value passed in, case sensitive
     content = data['content']
+    info = ''
     # If type is ip or domain
     if contentType in ['ip', 'domain']:
         # Send request to WhoIs API to get info about ip or domain
@@ -34,9 +35,13 @@ def result():
     elif contentType == 'hash':
         # Send request to VirusTotal API to get info about the hash
         info = requests.get(f'{vtURL}{content}', headers={'x-apikey': f'{vtKey}'}).text
-    else:
-        # If type isn't ip/domain/hash
-        return f"Invalid type passed in: '{contentType}'"
+    # If type isn't ip/domain/hash, or info isn't changed
+    elif info == '':
+        if contentType not in ['ip', 'domain', 'hash']:
+            # Return problem as invalid type
+            return f"Invalid type passed in: '{contentType}'"
+        # Otherwise return that there was a problem
+        return "There was an unexpected error."
     # Return the retrieved info as dict
     return json.loads(info)
 
