@@ -22,6 +22,8 @@ app = Flask(__name__)
 def result():
     if request.data == b'':
         data = f'{{"type": "{request.form["type"]}","content": "{request.form["content"]}"}}'
+    else:
+        data = request.data
     # Log request data
     print(data)
     # Parse request data into python dict
