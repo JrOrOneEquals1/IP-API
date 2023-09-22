@@ -21,11 +21,11 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def result():
     # Get the raw request data
-    request.get_data()
+    data = request.get_data()
     # Log request data
-    print(request.json)
+    print(data)
     # Parse request data into python dict
-    data = json.loads(request.json)
+    data = json.loads(data)
     # Get type of value passed in (ip/domain/hash) case insensitive
     contentType = data['type'].lower()
     # Get value passed in, case sensitive
